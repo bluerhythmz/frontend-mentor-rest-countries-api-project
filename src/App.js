@@ -1,19 +1,26 @@
 import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
 import { GlobalStyles } from "./GlobalStyles";
 import Header from "./components/header/Header";
 import Countries from "./components/countries/Countries";
 import Country from "./components/country/Country";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./Themes";
 
 function App() {
+  const [theme, setTheme] = useState("light");
+  const isDarkTheme = theme === "dark";
   return (
-    <div>
-      <GlobalStyles />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Countries />} />
-        <Route path="/:country" element={<Country />} />
-      </Routes>
-    </div>
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <div>
+        <GlobalStyles />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Countries />} />
+          <Route path="/:country" element={<Country />} />
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 }
 

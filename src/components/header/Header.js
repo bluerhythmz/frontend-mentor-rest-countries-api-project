@@ -1,9 +1,11 @@
+import { StyledH1, StyledHeader } from "./styles/Header.styled"
+
 const Header = () => {
   return (
-    <header>
-      <h1>Where in the world?</h1>
+    <StyledHeader>
+      <StyledH1>Where in the world?</StyledH1>
       <p>Dark Mode</p>
-    </header>
+    </StyledHeader>
   )
 }
 

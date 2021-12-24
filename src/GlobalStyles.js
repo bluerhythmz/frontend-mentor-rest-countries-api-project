@@ -11,4 +11,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Nunito Sans', sans-serif;
     font-size: 62.5%;
   }
+
+  body {
+    background-color: ${({theme}) => theme.background};
+  }
 `;

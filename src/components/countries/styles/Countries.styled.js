@@ -10,6 +10,7 @@ export const StyledSection = styled.section`
   place-items: center;
   max-width: 70%;
   margin: 0 auto;
+  margin-top: 4rem;
 `
 export const StyledH2 = styled.h2`
   font-weight: 800;
@@ -21,6 +22,7 @@ export const StyledInputWrapper = styled.div`
   position: relative;
   padding: 0;
   margin: 0;
+  margin-top: 2.4rem;
 `
 
 export const StyledDiv = styled.div`
