@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Country = () => {
@@ -8,6 +8,11 @@ const Country = () => {
   const [borderCountryNames, setBorderCountryNames] = useState([]);
   const [loading, setLoading] = useState(true);
   const params = useParams();
+  const navigate = useNavigate();
+
+  const handleClick = (country) => {
+    navigate(`/${country}`);
+  };
 
   useEffect(() => {
     const fetchCountry = async () => {
@@ -22,6 +27,7 @@ const Country = () => {
     fetchCountry();
     const fetchBorderCountries = async () => {
       const countryNames = [];
+      
       for (let i = 0; i < borderCountries.length; i++) {
         await axios
           .get(
@@ -32,6 +38,7 @@ const Country = () => {
           });
       }
       setBorderCountryNames(countryNames);
+      
     };
     fetchBorderCountries();
   }, [params.country, borderCountries]);
@@ -63,13 +70,16 @@ const Country = () => {
           <span key={index}>{language}</span>
         ))}
       </p>
-      <p>
+      <div>
         {borderCountryNames.map((name, index) => (
-          <Link key={index} to={`/${name}`}>
-            <span>{name}</span>
-          </Link>
+          <button
+            key={index}
+            onClick={(e) => handleClick(e.target.textContent)}
+          >
+            {name}
+          </button>
         ))}
-      </p>
+      </div>
     </div>
   );
 };
