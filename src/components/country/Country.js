@@ -8,11 +8,11 @@ import {
   StyledP,
   StyledMain,
   StyledSpan,
+  StyledSubArticle
 } from "./styles/Country.styled";
 
 const Country = () => {
   const [country, setCountry] = useState({});
-  const [borderCountries, setBorderCountries] = useState([]);
   const [borderCountryNames, setBorderCountryNames] = useState([]);
   const [loading, setLoading] = useState(true);
   const params = useParams();
@@ -27,32 +27,28 @@ const Country = () => {
   };
 
   useEffect(() => {
+    const promises = []
+    let borders = []
+    const url = "https://restcountries.com/v3.1/alpha?codes="
     const fetchCountry = async () => {
       await axios
         .get(`https://restcountries.com/v3.1/name/${params.country}`)
         .then((data) => {
           setCountry(data.data[0]);
-          setBorderCountries(data.data[0].borders);
-          setLoading(false);
-        });
-    };
-    fetchCountry();
-    const fetchBorderCountries = async () => {
-      const countryNames = [];
-
-      for (let i = 0; i < borderCountries.length; i++) {
-        await axios
-          .get(
-            `https://restcountries.com/v3.1/alpha?codes=${borderCountries[i]}`
-          )
-          .then((data) => {
-            countryNames.push(data.data[0].name.common);
-          });
-      }
-      setBorderCountryNames(countryNames);
-    };
-    fetchBorderCountries();
-  }, [params.country, borderCountries]);
+          borders = data.data[0].borders;
+        }).then(() => {
+          for (let i = 0; i < borders.length; i++) {
+            promises.push(axios.get(url + borders[i]))
+          }
+          axios.all(promises).then(axios.spread((...responses) => {
+            setBorderCountryNames(responses)
+            setLoading(false)
+          }))
+    })
+  }
+    fetchCountry()
+    
+  }, [params.country]);
   if (loading) return <h1>Loading...</h1>;
   return (
     <StyledMain>
@@ -63,7 +59,7 @@ const Country = () => {
         </figure>
         <article>
           <StyledH1>{country.name.common}</StyledH1>
-          <article>
+          <StyledSubArticle>
             <StyledP>
               Native Name:{" "}
               {Object.entries(country.name.nativeName).map((item, index) => (
@@ -82,8 +78,8 @@ const Country = () => {
             <StyledP>
               Capitial: <StyledSpan>{country.capital[0]}</StyledSpan>
             </StyledP>
-          </article>
-          <article>
+          </StyledSubArticle>
+          <StyledSubArticle>
             <StyledP>
               Top level domain: <StyledSpan>{country.tld[0]}</StyledSpan>
             </StyledP>
@@ -99,12 +95,12 @@ const Country = () => {
                 <StyledSpan key={index}>{language}</StyledSpan>
               ))}
             </StyledP>
-          </article>
+          </StyledSubArticle>
           <StyledButtonGrid>
-            {borderCountryNames.map((name, index) => (
+            {borderCountryNames.map((border, index) => (
               <Button
                 key={index}
-                label={name}
+                label={border.data[0].name.common}
                 handleClick={(e) => handleClick(e.target.textContent)}
               />
             ))}
