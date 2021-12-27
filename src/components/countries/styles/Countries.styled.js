@@ -1,16 +1,23 @@
 import styled from "styled-components";
 
 export const StyledMain = styled.main`
-  max-width: 90%;
+  width: 90%;
+  max-width: 125rem;
   margin: 0 auto;
 `
 
 export const StyledSection = styled.section`
   display: grid;
   place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   max-width: 70%;
+  gap: 4rem;
   margin: 0 auto;
   margin-top: 4rem;
+  @media (min-width: 87em) {
+    max-width: 100%;
+    gap: 7rem;
+  }
 `
 export const StyledH2 = styled.h2`
   font-weight: 800;

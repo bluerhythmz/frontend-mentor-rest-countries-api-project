@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const StyledArticle = styled.article`
+  width: 100%;
   cursor: pointer;
-  margin-bottom: 4em;
+  /* margin-bottom: 4em; */
   background-color: ${({theme}) => theme.element};
   border-radius: 5px;
   padding-bottom: 3.8em;
@@ -20,8 +21,14 @@ export const StyledH2 = styled.h2`
   color: ${({theme}) => theme.text};
 `
 
+export const StyledDiv = styled.div`
+  max-height: 16rem;
+  width: 100%;
+`
+
 export const StyledFlag = styled.img`
-  max-width: 100%;
+  width: 100%;
+  height: 16rem;
   border-radius: 5px 5px 0 0;
 `
 

@@ -16,7 +16,7 @@ function App() {
         <GlobalStyles />
         <Header />
         <Routes>
-          <Route path="/" element={<Countries />} />
+          <Route  path="/" element={<Countries />} />
           <Route path="/:country" element={<Country />} />
         </Routes>
       </div>

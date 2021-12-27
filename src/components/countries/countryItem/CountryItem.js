@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import {
   StyledArticle,
+  StyledDiv,
   StyledFlag,
   StyledH2,
   StyledP,
@@ -15,9 +16,9 @@ const CountryItem = ({ country }) => {
   };
   return (
     <StyledArticle onClick={() => handleClick(country.name.common)}>
-      <div>
+      <StyledDiv>
         <StyledFlag src={country.flags.png} />
-      </div>
+      </StyledDiv>
       <StyledSection>
         <StyledH2>{country.name.common}</StyledH2>
         <StyledP>
