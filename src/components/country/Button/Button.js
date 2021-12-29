@@ -1,12 +1,16 @@
-import React from 'react'
-import { StyledButton } from './styles/Button.styled'
+import React from "react";
+import { StyledBackButton, StyledButton } from "./styles/Button.styled";
 
 const Button = ({ label, handleClick }) => {
   return (
-    <StyledButton onClick={handleClick}>
-      {label}
-    </StyledButton>
-  )
-}
+    <>
+      {label === "Back" ? (
+        <StyledBackButton onClick={handleClick}>{label}</StyledBackButton>
+      ) : (
+        <StyledButton onClick={handleClick}>{label}</StyledButton>
+      )}
+    </>
+  );
+};
 
-export default Button
+export default Button;

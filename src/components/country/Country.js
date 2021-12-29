@@ -8,7 +8,11 @@ import {
   StyledP,
   StyledMain,
   StyledSpan,
-  StyledSubArticle
+  StyledSubArticle,
+  StyledFigure,
+  StyledArticle,
+  StyledH2,
+  StyledImage,
 } from "./styles/Country.styled";
 
 const Country = () => {
@@ -27,36 +31,38 @@ const Country = () => {
   };
 
   useEffect(() => {
-    const promises = []
-    let borders = []
-    const url = "https://restcountries.com/v3.1/alpha?codes="
+    const promises = [];
+    let borders = [];
+    const url = "https://restcountries.com/v3.1/alpha?codes=";
     const fetchCountry = async () => {
       await axios
         .get(`https://restcountries.com/v3.1/name/${params.country}`)
         .then((data) => {
           setCountry(data.data[0]);
           borders = data.data[0].borders;
-        }).then(() => {
+        })
+        .then(() => {
           for (let i = 0; i < borders.length; i++) {
-            promises.push(axios.get(url + borders[i]))
+            promises.push(axios.get(url + borders[i]));
           }
-          axios.all(promises).then(axios.spread((...responses) => {
-            setBorderCountryNames(responses)
-            setLoading(false)
-          }))
-    })
-  }
-    fetchCountry()
-    
+          axios.all(promises).then(
+            axios.spread((...responses) => {
+              setBorderCountryNames(responses);
+              setLoading(false);
+            })
+          );
+        });
+    };
+    fetchCountry();
   }, [params.country]);
   if (loading) return <h1>Loading...</h1>;
   return (
     <StyledMain>
       <Button label="Back" handleClick={goBack} />
       <section>
-        <figure>
-          <img src={country.flags.png} alt="country_flag" />
-        </figure>
+        <StyledFigure>
+          <StyledImage src={country.flags.png} alt="country_flag" />
+        </StyledFigure>
         <article>
           <StyledH1>{country.name.common}</StyledH1>
           <StyledSubArticle>
@@ -86,7 +92,7 @@ const Country = () => {
             <StyledP>
               Currencies:
               {Object.entries(country.currencies).map((currency, index) => (
-                <StyledSpan key={index}>{currency[1].name}</StyledSpan>
+                 <StyledSpan key={index}> {currency[1].name}</StyledSpan>
               ))}{" "}
             </StyledP>
             <StyledP>
@@ -96,15 +102,18 @@ const Country = () => {
               ))}
             </StyledP>
           </StyledSubArticle>
-          <StyledButtonGrid>
-            {borderCountryNames.map((border, index) => (
-              <Button
-                key={index}
-                label={border.data[0].name.common}
-                handleClick={(e) => handleClick(e.target.textContent)}
-              />
-            ))}
-          </StyledButtonGrid>
+          <StyledArticle>
+          <StyledH2>Border Countries:</StyledH2>
+            <StyledButtonGrid>
+              {borderCountryNames.map((border, index) => (
+                <Button
+                  key={index}
+                  label={border.data[0].name.common}
+                  handleClick={(e) => handleClick(e.target.textContent)}
+                />
+              ))}
+            </StyledButtonGrid>
+          </StyledArticle>
         </article>
       </section>
     </StyledMain>
