@@ -1,10 +1,11 @@
-import { StyledH1, StyledHeader } from "./styles/Header.styled"
+import { StyledH1, StyledHeader } from "./Header.styled"
 
-const Header = () => {
+const Header = ({ handleClick }) => {
+  
   return (
     <StyledHeader>
       <StyledH1>Where in the world?</StyledH1>
-      <p>Dark Mode</p>
+      <button onClick={handleClick}>Dark Mode</button>
     </StyledHeader>
   )
 }

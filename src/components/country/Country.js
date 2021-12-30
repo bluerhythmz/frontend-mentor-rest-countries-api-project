@@ -4,16 +4,17 @@ import axios from "axios";
 import Button from "./Button/Button";
 import {
   StyledButtonGrid,
-  StyledH1,
-  StyledP,
-  StyledMain,
+  Title,
+  P,
+  Main,
   StyledSpan,
   StyledSubArticle,
-  StyledFigure,
+  FIgure,
   StyledArticle,
-  StyledH2,
-  StyledImage,
-} from "./styles/Country.styled";
+  SubTitle,
+  Image,
+  Section
+} from "./Country.styled";
 
 const Country = () => {
   const [country, setCountry] = useState({});
@@ -57,53 +58,53 @@ const Country = () => {
   }, [params.country]);
   if (loading) return <h1>Loading...</h1>;
   return (
-    <StyledMain>
+    <Main>
       <Button label="Back" handleClick={goBack} />
-      <section>
-        <StyledFigure>
-          <StyledImage src={country.flags.png} alt="country_flag" />
-        </StyledFigure>
+      <Section>
+        <FIgure>
+          <Image src={country.flags.png} alt="country_flag" />
+        </FIgure>
         <article>
-          <StyledH1>{country.name.common}</StyledH1>
+          <Title>{country.name.common}</Title>
           <StyledSubArticle>
-            <StyledP>
+            <P>
               Native Name:{" "}
               {Object.entries(country.name.nativeName).map((item, index) => (
                 <StyledSpan key={index}>{item[1].official}</StyledSpan>
               ))}
-            </StyledP>
-            <StyledP>
+            </P>
+            <P>
               Population: <StyledSpan>{country.population}</StyledSpan>
-            </StyledP>
-            <StyledP>
+            </P>
+            <P>
               Region: <StyledSpan>{country.region}</StyledSpan>
-            </StyledP>
-            <StyledP>
+            </P>
+            <P>
               Subregion: <StyledSpan>{country.subregion}</StyledSpan>
-            </StyledP>
-            <StyledP>
+            </P>
+            <P>
               Capitial: <StyledSpan>{country.capital[0]}</StyledSpan>
-            </StyledP>
+            </P>
           </StyledSubArticle>
           <StyledSubArticle>
-            <StyledP>
+            <P>
               Top level domain: <StyledSpan>{country.tld[0]}</StyledSpan>
-            </StyledP>
-            <StyledP>
+            </P>
+            <P>
               Currencies:
               {Object.entries(country.currencies).map((currency, index) => (
                  <StyledSpan key={index}> {currency[1].name}</StyledSpan>
               ))}{" "}
-            </StyledP>
-            <StyledP>
+            </P>
+            <P>
               Languages:{" "}
               {Object.values(country.languages).map((language, index) => (
                 <StyledSpan key={index}>{language}</StyledSpan>
               ))}
-            </StyledP>
+            </P>
           </StyledSubArticle>
           <StyledArticle>
-          <StyledH2>Border Countries:</StyledH2>
+          <SubTitle>Border Countries:</SubTitle>
             <StyledButtonGrid>
               {borderCountryNames.map((border, index) => (
                 <Button
@@ -115,8 +116,8 @@ const Country = () => {
             </StyledButtonGrid>
           </StyledArticle>
         </article>
-      </section>
-    </StyledMain>
+      </Section>
+    </Main>
   );
 };
 

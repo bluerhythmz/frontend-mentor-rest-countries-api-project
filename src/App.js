@@ -10,11 +10,12 @@ import { lightTheme, darkTheme } from "./Themes";
 function App() {
   const [theme, setTheme] = useState("light");
   const isDarkTheme = theme === "dark";
+  const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark")
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <div>
         <GlobalStyles />
-        <Header />
+        <Header handleClick={toggleTheme}/>
         <Routes>
           <Route  path="/" element={<Countries />} />
           <Route path="/:country" element={<Country />} />
