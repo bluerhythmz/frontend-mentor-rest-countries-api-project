@@ -42,6 +42,7 @@ const Country = () => {
         .get(`https://restcountries.com/v3.1/name/${params.country}`)
         .then((data) => {
           setCountry(data.data[0]);
+          if (!data.data[0].borders) return;
           borders = data.data[0].borders;
         })
         .then(() => {
@@ -110,13 +111,19 @@ const Country = () => {
           <BorderCountriesWrapper>
             <SubTitle>Border Countries:</SubTitle>
             <StyledButtonGrid>
-              {borderCountryNames.map((border, index) => (
-                <Button
-                  key={index}
-                  label={border.data[0].name.common}
-                  handleClick={(e) => handleClick(e.target.textContent)}
-                />
-              ))}
+              {borderCountryNames.length >= 1 ? (
+                <>
+                  {borderCountryNames.map((border, index) => (
+                    <Button
+                      key={index}
+                      label={border.data[0].name.common}
+                      handleClick={(e) => handleClick(e.target.textContent)}
+                    />
+                  ))}
+                </>
+              ) : (
+                <P>No bordering countries</P>
+              )}
             </StyledButtonGrid>
           </BorderCountriesWrapper>
         </ContentGrid>

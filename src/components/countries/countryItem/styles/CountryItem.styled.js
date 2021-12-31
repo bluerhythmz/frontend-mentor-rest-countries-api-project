@@ -7,6 +7,10 @@ export const StyledArticle = styled.article`
   background-color: ${({theme}) => theme.element};
   border-radius: 5px;
   padding-bottom: 3.8em;
+  transition: transform .2s ease-in-out;
+  &:hover {
+    transform: translateY(-1rem);
+  }
 `
 
 export const StyledSection = styled.section`
