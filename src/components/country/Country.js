@@ -8,12 +8,14 @@ import {
   P,
   Main,
   StyledSpan,
-  StyledSubArticle,
   FIgure,
-  StyledArticle,
+  ContentGrid,
   SubTitle,
   Image,
-  Section
+  Section,
+  TextWrapperOne,
+  TextWrapperTwo,
+  BorderCountriesWrapper,
 } from "./Country.styled";
 
 const Country = () => {
@@ -64,14 +66,16 @@ const Country = () => {
         <FIgure>
           <Image src={country.flags.png} alt="country_flag" />
         </FIgure>
-        <article>
+        <ContentGrid>
           <Title>{country.name.common}</Title>
-          <StyledSubArticle>
+          <TextWrapperOne>
             <P>
               Native Name:{" "}
-              {Object.entries(country.name.nativeName).map((item, index) => (
-                <StyledSpan key={index}>{item[1].official}</StyledSpan>
-              ))}
+              {Object.entries(country.name.nativeName).map((item, index) => {
+                if (index === 0) {
+                  return <StyledSpan key={index}>{item[1].common}</StyledSpan>;
+                }
+              })}
             </P>
             <P>
               Population: <StyledSpan>{country.population}</StyledSpan>
@@ -85,15 +89,15 @@ const Country = () => {
             <P>
               Capitial: <StyledSpan>{country.capital[0]}</StyledSpan>
             </P>
-          </StyledSubArticle>
-          <StyledSubArticle>
+          </TextWrapperOne>
+          <TextWrapperTwo>
             <P>
               Top level domain: <StyledSpan>{country.tld[0]}</StyledSpan>
             </P>
             <P>
               Currencies:
               {Object.entries(country.currencies).map((currency, index) => (
-                 <StyledSpan key={index}> {currency[1].name}</StyledSpan>
+                <StyledSpan key={index}> {currency[1].name}</StyledSpan>
               ))}{" "}
             </P>
             <P>
@@ -102,9 +106,9 @@ const Country = () => {
                 <StyledSpan key={index}>{language}</StyledSpan>
               ))}
             </P>
-          </StyledSubArticle>
-          <StyledArticle>
-          <SubTitle>Border Countries:</SubTitle>
+          </TextWrapperTwo>
+          <BorderCountriesWrapper>
+            <SubTitle>Border Countries:</SubTitle>
             <StyledButtonGrid>
               {borderCountryNames.map((border, index) => (
                 <Button
@@ -114,8 +118,8 @@ const Country = () => {
                 />
               ))}
             </StyledButtonGrid>
-          </StyledArticle>
-        </article>
+          </BorderCountriesWrapper>
+        </ContentGrid>
       </Section>
     </Main>
   );

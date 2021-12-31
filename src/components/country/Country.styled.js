@@ -7,22 +7,63 @@ export const Main = styled.main`
 
 export const Section = styled.section`
   display: grid;
+  gap: 3.2rem;
   @media (min-width: 1440px) {
     grid-auto-flow: column;
   }
 `;
 
-export const StyledSubArticle = styled.article`
+export const ContentGrid = styled.article`
+  display: grid;
+  gap: 3rem;
+  grid-template-areas:
+    "title"
+    "contentOne"
+    "contentTwo"
+    "borderCountries";
+
+  @media (min-width: 800px) {
+    grid-template-areas:
+      "title title"
+      "contentOne contentTwo"
+      "borderCountries borderCountries";
+  }
+
+  @media (min-width: 1440px) {
+    align-self: center;
+    justify-self: center;
+  }
+`;
+
+export const TextWrapperOne = styled.article`
   margin-top: 3.2rem;
+  grid-area: contentOne;
+  @media (min-width: 1440px) {
+    margin-top: 0rem;
+  }
+`;
+
+export const TextWrapperTwo = styled.article`
+  margin-top: 3.2rem;
+  grid-area: contentTwo;
+
+  @media (min-width: 800px) {
+    /* margin-top: 5rem; */
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 0rem;
+  }
 `;
 
 export const Title = styled.h1`
-  margin-top: 4.4rem;
   font-size: 2.2rem;
   font-weight: 800;
   color: ${({ theme }) => theme.text};
+  grid-area: title;
   @media (min-width: 1440px) {
     font-size: 3.2rem;
+    margin-top: 4.4rem;
   }
 `;
 
@@ -56,7 +97,7 @@ export const StyledButtonGrid = styled.div`
 
 export const FIgure = styled.figure`
   margin-top: 6.4rem;
-  width: 90%;
+  width: 100%;
 `;
 
 export const Image = styled.img`
@@ -64,4 +105,6 @@ export const Image = styled.img`
   border-radius: 1rem;
 `;
 
-export const StyledArticle = styled(StyledSubArticle)``;
+export const BorderCountriesWrapper = styled.article`
+  grid-area: borderCountries;
+`;
