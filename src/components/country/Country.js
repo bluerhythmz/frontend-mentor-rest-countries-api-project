@@ -72,11 +72,13 @@ const Country = () => {
           <TextWrapperOne>
             <P>
               Native Name:{" "}
-              {Object.entries(country.name.nativeName).map((item, index) => {
-                if (index === 0) {
-                  return <StyledSpan key={index}>{item[1].common}</StyledSpan>;
-                }
-              })}
+              {country.name.nativeName ? (
+                <StyledSpan>
+                  {Object.values(country.name.nativeName)[0].official}
+                </StyledSpan>
+              ) : (
+                <StyledSpan>Country doesn't have a native name</StyledSpan>
+              )}
             </P>
             <P>
               Population: <StyledSpan>{country.population}</StyledSpan>
@@ -88,24 +90,44 @@ const Country = () => {
               Subregion: <StyledSpan>{country.subregion}</StyledSpan>
             </P>
             <P>
-              Capitial: <StyledSpan>{country.capital[0]}</StyledSpan>
+              Capitial:{" "}
+              <StyledSpan>
+                {country.capital
+                  ? country.capital[0]
+                  : "This country doesn't have a capital"}
+              </StyledSpan>
             </P>
           </TextWrapperOne>
           <TextWrapperTwo>
             <P>
-              Top level domain: <StyledSpan>{country.tld[0]}</StyledSpan>
+              Top level domain:{" "}
+              <StyledSpan>
+                {!country.tld
+                  ? "This country doesn't have a top level domain"
+                  : country.tld[0]}
+              </StyledSpan>
             </P>
             <P>
               Currencies:
-              {Object.entries(country.currencies).map((currency, index) => (
-                <StyledSpan key={index}> {currency[1].name}</StyledSpan>
-              ))}{" "}
+              {country.currencies ? (
+                Object.entries(country.currencies).map((currency, index) => (
+                  <StyledSpan key={index}> {currency[1].name}</StyledSpan>
+                ))
+              ) : (
+                <StyledSpan>
+                  This country doesn't have any currencies
+                </StyledSpan>
+              )}{" "}
             </P>
             <P>
               Languages:{" "}
-              {Object.values(country.languages).map((language, index) => (
-                <StyledSpan key={index}>{language}</StyledSpan>
-              ))}
+              {country.languages ? (
+                Object.values(country.languages).map((language, index) => (
+                  <StyledSpan key={index}>{language}</StyledSpan>
+                ))
+              ) : (
+                <StyledSpan>This country doesn't have any languages</StyledSpan>
+              )}
             </P>
           </TextWrapperTwo>
           <BorderCountriesWrapper>
