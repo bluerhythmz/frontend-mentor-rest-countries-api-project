@@ -10,7 +10,7 @@ import {
 
 const Filter = ({ handleSelect, region }) => {
   const [open, setOpen] = useState(false);
-  const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+  const regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
   const handleClick = () => {
     setOpen(!open);
   };
@@ -24,7 +24,7 @@ const Filter = ({ handleSelect, region }) => {
       </Button>
       <Options style={{display: open ? "block" : "none"}}>
         {regions.map((region, index) => (
-          <Option key={index}>{region}</Option>
+          <Option key={index} onClick={(e) => handleSelect(e.target.innerText)}>{region}</Option>
         ))}
       </Options>
     </Container>

@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const Loading = styled.h1`
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+
 export const Main = styled.main`
   max-width: 90%;
   margin: 0 auto;
@@ -61,9 +69,12 @@ export const Title = styled.h1`
   font-weight: 800;
   color: ${({ theme }) => theme.text};
   grid-area: title;
-  @media (min-width: 1440px) {
+  @media (min-width: 87em) {
     font-size: 3.2rem;
     margin-top: 4.4rem;
+  }
+  @media (min-width: 100em) {
+    font-size: 3.6rem;
   }
 `;
 
@@ -71,6 +82,9 @@ export const SubTitle = styled.h2`
   font-size: 1.6rem;
   font-weight: 600;
   color: ${({ theme }) => theme.text};
+  @media (min-width: 87em) {
+    font-size: 2rem;
+  }
 `;
 
 export const P = styled.p`
@@ -78,8 +92,11 @@ export const P = styled.p`
   font-weight: 600;
   margin-bottom: 8px;
   color: ${({ theme }) => theme.text};
-  @media (min-width: 1440px) {
+  @media (min-width: 87em) {
     font-size: 1.6rem;
+  }
+  @media (min-width: 100em) {
+    font-size: 2rem;
   }
 `;
 

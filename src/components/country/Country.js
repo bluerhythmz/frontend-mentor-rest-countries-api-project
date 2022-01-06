@@ -16,6 +16,7 @@ import {
   TextWrapperOne,
   TextWrapperTwo,
   BorderCountriesWrapper,
+  Loading,
 } from "./Country.styled";
 
 const Country = () => {
@@ -59,7 +60,7 @@ const Country = () => {
     };
     fetchCountry();
   }, [params.country]);
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Loading>Loading...</Loading>;
   return (
     <Main>
       <Button label="Back" handleClick={goBack} />

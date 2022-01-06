@@ -16,7 +16,7 @@ import Search from "../../assets/search-outline.svg";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
-  const [region, setRegion] = useState("Filter by Region");
+  const [region, setRegion] = useState("All");
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -34,7 +34,7 @@ const Countries = () => {
             country.name.common.toLowerCase().includes(query.toLowerCase())
           );
           const filteredByRegion = filteredCountries.filter((country) => {
-            if (region !== "Filter by Region") {
+            if (region !== "All") {
               return country.region === region;
             }
             return country;
@@ -44,6 +44,7 @@ const Countries = () => {
             setError("No items match this query");
             setLoading(false);
           } else {
+            console.log(filteredByRegion)
             setCountries(filteredByRegion);
             setError("");
             setLoading(false);
