@@ -16,6 +16,10 @@ export const Main = styled.main`
 export const Section = styled.section`
   display: grid;
   gap: 3.2rem;
+  @media (min-width: 40em) {
+    max-width: 70%;
+    margin: 0 auto;
+  }
   @media (min-width: 1440px) {
     grid-auto-flow: column;
   }

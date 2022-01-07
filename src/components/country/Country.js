@@ -123,9 +123,13 @@ const Country = () => {
             <P>
               Languages:{" "}
               {country.languages ? (
-                Object.values(country.languages).map((language, index) => (
-                  <StyledSpan key={index}>{language}</StyledSpan>
-                ))
+                Object.values(country.languages).map((language, index) => {
+                  if (Object.values(country.languages).length > 1) {
+                    return (
+                      <StyledSpan key={index}>{index === Object.values(country.languages).length - 1 ? language : language + ", "} </StyledSpan>
+                    )
+                  }
+                })
               ) : (
                 <StyledSpan>This country doesn't have any languages</StyledSpan>
               )}

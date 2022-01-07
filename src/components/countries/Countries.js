@@ -8,11 +8,8 @@ import {
   StyledInputsContainer,
   StyledMain,
   StyledSection,
-  StyledImage,
 } from "./styles/Countries.styled";
-import { BsSearch } from "react-icons/bs";
 import Filter from "../Filter/Filter";
-import Search from "../../assets/search-outline.svg";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
