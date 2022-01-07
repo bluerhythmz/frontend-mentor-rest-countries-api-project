@@ -29,7 +29,7 @@ export const Container = styled.article`
 `;
 
 export const Options = styled.article`
-  margin-top: 1rem;
+  margin-top: 4px;
   border-radius: 5px;
   position: absolute;
   width: 100%;

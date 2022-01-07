@@ -44,7 +44,7 @@ export const StyledInputWrapper = styled.div`
   width: 100%;
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  @media (min-width: 57rem) {
+  @media (min-width: 47rem) {
     width: 35%;
   }
 `;

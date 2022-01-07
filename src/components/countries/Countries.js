@@ -53,8 +53,9 @@ const Countries = () => {
     return () => clearTimeout(timeout);
   }, [query, region]);
 
-  const handleSelect = (value) => {
+  const handleSelect = (value, callback) => {
     setRegion(value);
+    callback()
   };
 
   return (
