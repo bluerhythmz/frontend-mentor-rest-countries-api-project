@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "./Button/Button";
+import Loading from "../Loading/Loading";
 import {
-  StyledButtonGrid,
+  ButtonGrid,
   Title,
-  P,
+  Text,
   Main,
-  StyledSpan,
+  Span,
   FIgure,
   ContentGrid,
   SubTitle,
@@ -16,7 +17,6 @@ import {
   TextWrapperOne,
   TextWrapperTwo,
   BorderCountriesWrapper,
-  Loading,
 } from "./Country.styled";
 
 const Country = () => {
@@ -60,7 +60,7 @@ const Country = () => {
     };
     fetchCountry();
   }, [params.country]);
-  if (loading) return <Loading>Loading...</Loading>;
+  if (loading) return <Loading />;
   return (
     <Main>
       <Button label="Back" handleClick={goBack} />
@@ -71,73 +71,78 @@ const Country = () => {
         <ContentGrid>
           <Title>{country.name.common}</Title>
           <TextWrapperOne>
-            <P>
+            <Text>
               Native Name:{" "}
               {country.name.nativeName ? (
-                <StyledSpan>
+                <Span>
                   {Object.values(country.name.nativeName)[0].official}
-                </StyledSpan>
+                </Span>
               ) : (
-                <StyledSpan>Country doesn't have a native name</StyledSpan>
+                <Span>Country doesn't have a native name</Span>
               )}
-            </P>
-            <P>
-              Population: <StyledSpan>{country.population}</StyledSpan>
-            </P>
-            <P>
-              Region: <StyledSpan>{country.region}</StyledSpan>
-            </P>
-            <P>
-              Subregion: <StyledSpan>{country.subregion}</StyledSpan>
-            </P>
-            <P>
+            </Text>
+            <Text>
+              Population: <Span>{country.population}</Span>
+            </Text>
+            <Text>
+              Region: <Span>{country.region}</Span>
+            </Text>
+            <Text>
+              Subregion: <Span>{country.subregion}</Span>
+            </Text>
+            <Text>
               Capitial:{" "}
-              <StyledSpan>
+              <Span>
                 {country.capital
                   ? country.capital[0]
                   : "This country doesn't have a capital"}
-              </StyledSpan>
-            </P>
+              </Span>
+            </Text>
           </TextWrapperOne>
           <TextWrapperTwo>
-            <P>
+            <Text>
               Top level domain:{" "}
-              <StyledSpan>
+              <Span>
                 {!country.tld
                   ? "This country doesn't have a top level domain"
                   : country.tld[0]}
-              </StyledSpan>
-            </P>
-            <P>
+              </Span>
+            </Text>
+            <Text>
               Currencies:
               {country.currencies ? (
                 Object.entries(country.currencies).map((currency, index) => (
-                  <StyledSpan key={index}> {currency[1].name}</StyledSpan>
+                  <Span key={index}> {currency[1].name}</Span>
                 ))
               ) : (
-                <StyledSpan>
+                <Span>
                   This country doesn't have any currencies
-                </StyledSpan>
+                </Span>
               )}{" "}
-            </P>
-            <P>
+            </Text>
+            <Text>
               Languages:{" "}
               {country.languages ? (
                 Object.values(country.languages).map((language, index) => {
                   if (Object.values(country.languages).length > 1) {
                     return (
-                      <StyledSpan key={index}>{index === Object.values(country.languages).length - 1 ? language : language + ", "} </StyledSpan>
-                    )
+                      <Span key={language}>
+                        {index === Object.values(country.languages).length - 1
+                          ? language
+                          : language + ", "}{" "}
+                      </Span>
+                    );
                   }
+                  return <Span key={language}>{language}</Span>;
                 })
               ) : (
-                <StyledSpan>This country doesn't have any languages</StyledSpan>
+                <Span>This country doesn't have any languages</Span>
               )}
-            </P>
+            </Text>
           </TextWrapperTwo>
           <BorderCountriesWrapper>
             <SubTitle>Border Countries:</SubTitle>
-            <StyledButtonGrid>
+            <ButtonGrid>
               {borderCountryNames.length >= 1 ? (
                 <>
                   {borderCountryNames.map((border, index) => (
@@ -149,9 +154,9 @@ const Country = () => {
                   ))}
                 </>
               ) : (
-                <P>No bordering countries</P>
+                <Text>No bordering countries</Text>
               )}
-            </StyledButtonGrid>
+            </ButtonGrid>
           </BorderCountriesWrapper>
         </ContentGrid>
       </Section>

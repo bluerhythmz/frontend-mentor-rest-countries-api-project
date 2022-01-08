@@ -1,24 +1,12 @@
 import styled from "styled-components";
 
-export const StyledMain = styled.main`
+export const Wrapper = styled.main`
   width: 90%;
   max-width: 125rem;
   margin: 0 auto;
 `;
 
-export const StyledInputsContainer = styled.section`
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  @media (min-width: 47em) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-`;
-
-export const StyledSection = styled.section`
+export const Section = styled.section`
   display: grid;
   place-items: center;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -31,13 +19,31 @@ export const StyledSection = styled.section`
     gap: 7rem;
   }
 `;
+
+export const Text = styled.h1`
+  font-size: 1.8rem;
+  color: ${({ theme }) => theme.text};
+`;
+
 export const StyledH2 = styled.h2`
   font-weight: 800;
   font-size: 1.8rem;
   line-height: 1.2;
 `;
 
-export const StyledInputWrapper = styled.div`
+export const InputsContainer = styled.section`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  @media (min-width: 47em) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
+export const InputWrapper = styled.div`
   position: relative;
   padding: 0;
   margin: 0;
@@ -49,24 +55,19 @@ export const StyledInputWrapper = styled.div`
   }
 `;
 
-export const StyledDiv = styled.div`
+export const Figure = styled.figure`
   position: absolute;
   top: 50%;
   left: 4rem;
   transform: translate(-50%, -50%);
   font-size: 1.6rem;
-  color: ${({theme}) => theme.text};
+  color: ${({ theme }) => theme.text};
 `;
 
-export const StyledImage = styled.img`
+export const TextInput = styled.input`
   width: 100%;
-  color: white;
-`;
-
-export const StyledInput = styled.input`
-  width: 100%;
-  background-color: ${({theme}) => theme.element};
-  color: ${({theme}) => theme.text};
+  background-color: ${({ theme }) => theme.element};
+  color: ${({ theme }) => theme.text};
   border: none;
   border-radius: 5px;
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
@@ -75,6 +76,6 @@ export const StyledInput = styled.input`
   ::-moz-placeholder,
   ::placeholder {
     font-size: 1.2rem;
-    color: ${({theme}) => theme.text};
+    color: ${({ theme }) => theme.text};
   }
 `;

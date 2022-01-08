@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import CountryItem from "./countryItem/CountryItem";
+import CountryItem from "./CountryItem/CountryItem";
 import {
-  StyledDiv,
-  StyledInput,
-  StyledInputWrapper,
-  StyledInputsContainer,
-  StyledMain,
-  StyledSection,
-} from "./styles/Countries.styled";
-import Filter from "../Filter/Filter";
+  Figure,
+  TextInput,
+  InputWrapper,
+  InputsContainer,
+  Wrapper,
+  Section,
+  Text,
+} from "./Countries.styled";
+import Filter from "./Filter/Filter";
+import Loading from "../Loading/Loading";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
@@ -20,66 +22,59 @@ const Countries = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      const fetchCountries = async () => {
+      
         setLoading(true);
-        await axios.get(`https://restcountries.com/v3.1/all`).then((data) => {
+        axios.get(`https://restcountries.com/v3.1/all`).then((data) => {
           //fix: Aland Islands to be sorted with "A" names
           const sortedCountries = data.data.sort((a, b) =>
             a.name.common < b.name.common ? -1 : 1
           );
-          const filteredCountries = sortedCountries.filter((country) =>
+          const filteredCountriesByQuery = sortedCountries.filter((country) =>
             country.name.common.toLowerCase().includes(query.toLowerCase())
           );
-          const filteredByRegion = filteredCountries.filter((country) => {
+          const filteredCountriesByRegion = filteredCountriesByQuery.filter((country) => {
             if (region !== "All") {
               return country.region === region;
             }
             return country;
           });
 
-          if (filteredCountries.length === 0) {
+          if (filteredCountriesByQuery.length === 0) {
             setError("No items match this query");
             setLoading(false);
           } else {
-            console.log(filteredByRegion)
-            setCountries(filteredByRegion);
+            setCountries(filteredCountriesByRegion);
             setError("");
             setLoading(false);
           }
         });
-      };
-      fetchCountries();
+      
     }, 400);
     return () => clearTimeout(timeout);
   }, [query, region]);
 
-  const handleSelect = (value, callback) => {
-    setRegion(value);
-    callback()
-  };
-
   return (
-    <StyledMain>
-      <StyledInputsContainer>
-        <StyledInputWrapper>
-          <StyledDiv>
+    <Wrapper>
+      <InputsContainer>
+        <InputWrapper>
+          <Figure>
             <ion-icon name="search-outline"></ion-icon>
-          </StyledDiv>
-          <StyledInput
+          </Figure>
+          <TextInput
             type="text"
             name="search"
             placeholder="Search for a country..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-        </StyledInputWrapper>
-        <Filter handleSelect={handleSelect} region={region} />
-      </StyledInputsContainer>
-      <StyledSection>
+        </InputWrapper>
+        <Filter region={region} setRegion={setRegion} />
+      </InputsContainer>
+      <Section>
         {loading ? (
-          <h1>Loading...</h1>
+          <Loading />
         ) : error ? (
-          <h1>{error.toString()}</h1>
+          <Text>{error.toString()}</Text>
         ) : (
           <>
             {countries.map((country, index) => (
@@ -87,8 +82,8 @@ const Countries = () => {
             ))}
           </>
         )}
-      </StyledSection>
-    </StyledMain>
+      </Section>
+    </Wrapper>
   );
 };
 

@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-export const StyledArticle = styled.article`
+export const Wrapper = styled.article`
   width: 100%;
   cursor: pointer;
-  /* margin-bottom: 4em; */
   background-color: ${({theme}) => theme.element};
   border-radius: 5px;
   padding-bottom: 3.8em;
@@ -13,11 +12,11 @@ export const StyledArticle = styled.article`
   }
 `
 
-export const StyledSection = styled.section`
+export const Section = styled.section`
   padding-left: 2em;
 `
 
-export const StyledH2 = styled.h2`
+export const Title = styled.h2`
   margin-top: 1.3em;
   margin-bottom: .9em;
   font-size: 1.8rem;
@@ -25,25 +24,25 @@ export const StyledH2 = styled.h2`
   color: ${({theme}) => theme.text};
 `
 
-export const StyledDiv = styled.div`
+export const Figure = styled.figure`
   max-height: 16rem;
   width: 100%;
 `
 
-export const StyledFlag = styled.img`
+export const Image = styled.img`
   width: 100%;
   height: 16rem;
   border-radius: 5px 5px 0 0;
 `
 
-export const StyledP = styled.p`
+export const Text = styled.p`
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 8px;
   color: ${({theme}) => theme.text};
 `
 
-export const StyledSpan = styled.span`
+export const Span = styled.span`
   font-weight: 300;
   color: ${({theme}) => theme.text};
 `

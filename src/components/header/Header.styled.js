@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledHeader = styled.header`
+export const Wrapper = styled.header`
   width: 100%;
   margin-bottom: 4rem;
   display: flex;
@@ -14,7 +14,7 @@ export const StyledHeader = styled.header`
   }
 `;
 
-export const StyledH1 = styled.h1`
+export const Title = styled.h1`
   cursor: pointer;
   font-size: 1.4rem;
   font-weight: 800;

@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-export const Loading = styled.h1`
-  font-size: 3rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`
-
 export const Main = styled.main`
   max-width: 90%;
   margin: 0 auto;
@@ -20,7 +12,8 @@ export const Section = styled.section`
     max-width: 70%;
     margin: 0 auto;
   }
-  @media (min-width: 1440px) {
+  @media (min-width: 87em) {
+    max-width: 100%;
     grid-auto-flow: column;
   }
 `;
@@ -41,7 +34,7 @@ export const ContentGrid = styled.article`
       "borderCountries borderCountries";
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 87em) {
     align-self: center;
     justify-self: center;
   }
@@ -50,7 +43,7 @@ export const ContentGrid = styled.article`
 export const TextWrapperOne = styled.article`
   margin-top: 3.2rem;
   grid-area: contentOne;
-  @media (min-width: 1440px) {
+  @media (min-width: 87em) {
     margin-top: 0rem;
   }
 `;
@@ -59,11 +52,7 @@ export const TextWrapperTwo = styled.article`
   margin-top: 3.2rem;
   grid-area: contentTwo;
 
-  @media (min-width: 800px) {
-    /* margin-top: 5rem; */
-  }
-
-  @media (min-width: 1440px) {
+  @media (min-width: 87em) {
     margin-top: 0rem;
   }
 `;
@@ -91,7 +80,7 @@ export const SubTitle = styled.h2`
   }
 `;
 
-export const P = styled.p`
+export const Text = styled.p`
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 8px;
@@ -104,12 +93,12 @@ export const P = styled.p`
   }
 `;
 
-export const StyledSpan = styled.span`
+export const Span = styled.span`
   font-weight: 300;
   color: ${({ theme }) => theme.text};
 `;
 
-export const StyledButtonGrid = styled.div`
+export const ButtonGrid = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));

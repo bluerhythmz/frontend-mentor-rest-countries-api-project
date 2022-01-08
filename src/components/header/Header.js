@@ -1,17 +1,17 @@
-import { StyledH1, StyledHeader, ThemeToggle, Span } from "./Header.styled";
+import { Title, Wrapper, ThemeToggle, Span } from "./Header.styled";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ handleClick }) => {
-  const navigate = useNavigate()
-  const goHome = () => navigate('/')
+  const navigate = useNavigate();
+  const goHome = () => navigate("/");
   return (
-    <StyledHeader>
-      <StyledH1 onClick={goHome}>Where in the world?</StyledH1>
+    <Wrapper>
+      <Title onClick={goHome}>Where in the world?</Title>
       <ThemeToggle onClick={handleClick}>
         <ion-icon name="moon"></ion-icon>
         <Span>Dark Mode</Span>
       </ThemeToggle>
-    </StyledHeader>
+    </Wrapper>
   );
 };
 

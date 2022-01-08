@@ -1,37 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import {
-  StyledArticle,
-  StyledDiv,
-  StyledFlag,
-  StyledH2,
-  StyledP,
-  StyledSection,
-  StyledSpan,
-} from "./styles/CountryItem.styled";
+  Wrapper,
+  Figure,
+  Image,
+  Title,
+  Text,
+  Section,
+  Span,
+} from "./CountryItem.styled";
 
 const CountryItem = ({ country }) => {
+  const { name, flags, population, region, capital } = country
   const navigate = useNavigate();
   const handleClick = (country) => {
     navigate(`/${country}`);
   };
   return (
-    <StyledArticle onClick={() => handleClick(country.name.common)}>
-      <StyledDiv>
-        <StyledFlag src={country.flags.png} />
-      </StyledDiv>
-      <StyledSection>
-        <StyledH2>{country.name.common}</StyledH2>
-        <StyledP>
-          Population: <StyledSpan>{country.population.toLocaleString()}</StyledSpan>
-        </StyledP>
-        <StyledP>
-          Region: <StyledSpan>{country.region}</StyledSpan>
-        </StyledP>
-        <StyledP>
-          Capitial: <StyledSpan>{country.capital ? country.capital[0] : ""}</StyledSpan>
-        </StyledP>
-      </StyledSection>
-    </StyledArticle>
+    <Wrapper onClick={() => handleClick(name.common)}>
+      <Figure>
+        <Image src={flags.png} />
+      </Figure>
+      <Section>
+        <Title>{name.common}</Title>
+        <Text>
+          Population: <Span>{population.toLocaleString()}</Span>
+        </Text>
+        <Text>
+          Region: <Span>{region}</Span>
+        </Text>
+        <Text>
+          Capitial: <Span>{capital ? capital[0] : ""}</Span>
+        </Text>
+      </Section>
+    </Wrapper>
   );
 };
 

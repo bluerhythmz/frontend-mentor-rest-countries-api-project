@@ -13,14 +13,12 @@ function App() {
   const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark")
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
-      <div>
         <GlobalStyles />
         <Header handleClick={toggleTheme}/>
         <Routes>
           <Route  path="/" element={<Countries />} />
           <Route path="/:country" element={<Country />} />
         </Routes>
-      </div>
     </ThemeProvider>
   );
 }

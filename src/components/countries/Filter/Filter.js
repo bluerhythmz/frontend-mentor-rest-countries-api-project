@@ -8,18 +8,19 @@ import {
   Span,
 } from "./Filter.styled";
 
-const Filter = ({ handleSelect, region }) => {
+const Filter = ({ region, setRegion }) => {
   const [open, setOpen] = useState(false);
   const regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
   const filterRef = useRef()
   
-  const handleClick = () => {
+  const handleFilterClick = () => {
     setOpen(!open);
   };
 
-  const handleOptionClick = () => {
+  const handleSelectOption = (value) => {
+    setRegion(value);
     setOpen(false)
-  }
+  };
 
   useEffect(() => {
     document.addEventListener('click', (e) => {
@@ -33,7 +34,7 @@ const Filter = ({ handleSelect, region }) => {
 
   return (
     <Container ref={filterRef}>
-      <Button onClick={handleClick}>
+      <Button onClick={handleFilterClick}>
         <Span>{region === "All" ? "Filter by Region" : region}</Span>
         <Figure>
           <ion-icon name="chevron-down-outline"></ion-icon>
@@ -41,7 +42,7 @@ const Filter = ({ handleSelect, region }) => {
       </Button>
       <Options style={{display: open ? "block" : "none"}}>
         {regions.map((region, index) => (
-          <Option key={index} onClick={(e) => handleSelect(e.target.innerText, handleOptionClick)}>{region}</Option>
+          <Option key={index} onClick={(e) => handleSelectOption(e.target.innerText)}>{region}</Option>
         ))}
       </Options>
     </Container>
