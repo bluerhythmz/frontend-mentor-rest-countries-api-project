@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.article`
+export const Wrapper = styled.section`
   width: 100%;
   cursor: pointer;
   background-color: ${({theme}) => theme.element};
@@ -12,7 +12,7 @@ export const Wrapper = styled.article`
   }
 `
 
-export const Section = styled.section`
+export const Article = styled.article`
   padding-left: 2em;
 `
 

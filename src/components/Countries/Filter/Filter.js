@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import {
   Button,
   Container,
-  Figure,
+  Div,
   Option,
   Options,
   Span,
@@ -36,9 +36,9 @@ const Filter = ({ region, setRegion }) => {
     <Container ref={filterRef}>
       <Button onClick={handleFilterClick}>
         <Span>{region === "All" ? "Filter by Region" : region}</Span>
-        <Figure>
+        <Div>
           <ion-icon name="chevron-down-outline"></ion-icon>
-        </Figure>
+        </Div>
       </Button>
       <Options style={{display: open ? "block" : "none"}}>
         {regions.map((region, index) => (

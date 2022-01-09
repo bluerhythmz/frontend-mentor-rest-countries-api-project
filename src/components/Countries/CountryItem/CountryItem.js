@@ -5,7 +5,7 @@ import {
   Image,
   Title,
   Text,
-  Section,
+  Article,
   Span,
 } from "./CountryItem.styled";
 
@@ -20,7 +20,7 @@ const CountryItem = ({ country }) => {
       <Figure>
         <Image src={flags.png} />
       </Figure>
-      <Section>
+      <Article>
         <Title>{name.common}</Title>
         <Text>
           Population: <Span>{population.toLocaleString()}</Span>
@@ -31,7 +31,7 @@ const CountryItem = ({ country }) => {
         <Text>
           Capitial: <Span>{capital ? capital[0] : ""}</Span>
         </Text>
-      </Section>
+      </Article>
     </Wrapper>
   );
 };

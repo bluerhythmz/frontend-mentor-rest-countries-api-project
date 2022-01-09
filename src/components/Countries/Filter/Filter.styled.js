@@ -19,16 +19,16 @@ export const Span = styled.span`
   color: ${({ theme }) => theme.text};
 `;
 
-export const Figure = styled.figure`
+export const Div = styled.div`
   color: ${({ theme }) => theme.text};
 `;
 
-export const Container = styled.article`
+export const Container = styled.section`
   position: relative;
   width: 20rem;
 `;
 
-export const Options = styled.article`
+export const Options = styled.section`
   margin-top: 4px;
   border-radius: 5px;
   position: absolute;

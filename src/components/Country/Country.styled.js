@@ -18,7 +18,7 @@ export const Section = styled.section`
   }
 `;
 
-export const ContentGrid = styled.article`
+export const ContentGrid = styled.section`
   display: grid;
   gap: 3rem;
   grid-template-areas:
@@ -40,7 +40,7 @@ export const ContentGrid = styled.article`
   }
 `;
 
-export const TextWrapperOne = styled.article`
+export const TextWrapperOne = styled.section`
   margin-top: 3.2rem;
   grid-area: contentOne;
   @media (min-width: 87em) {
@@ -48,7 +48,7 @@ export const TextWrapperOne = styled.article`
   }
 `;
 
-export const TextWrapperTwo = styled.article`
+export const TextWrapperTwo = styled.section`
   margin-top: 3.2rem;
   grid-area: contentTwo;
 
